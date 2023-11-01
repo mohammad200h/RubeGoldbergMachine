@@ -1,0 +1,37 @@
+<% 
+    require 'erb'
+    require 'matrix'
+    require_relative "Box"
+   
+   
+
+    def degreeToRadian(degrees)
+      radians = degrees * Math::PI / 180 
+      return radians
+    end
+    def a_to_s(v)#converts array to string
+      Array(v).join(" ")
+    end
+
+    box = Box.new()
+  
+%>
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    <%=box.assets_xml%>
+  </asset>
+
+  <default>
+    <%=box.default_xml%>
+  </default>
+
+
+  <worldbody>
+    <%=box.body_xml%>
+  </worldbody>
+
+ 
+</mujoco>

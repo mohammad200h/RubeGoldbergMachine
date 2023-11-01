@@ -1,0 +1,37 @@
+<% 
+    require 'erb'
+    require 'matrix'
+    require_relative "Ball"
+   
+   
+
+    def degreeToRadian(degrees)
+      radians = degrees * Math::PI / 180 
+      return radians
+    end
+    def a_to_s(v)#converts array to string
+      Array(v).join(" ")
+    end
+
+    ball = Ball.new()
+  
+%>
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    <%=ball.assets_xml%>
+  </asset>
+
+  <default>
+    <%=ball.default_xml%>
+  </default>
+
+
+  <worldbody>
+    <%=ball.body_xml%>
+  </worldbody>
+
+ 
+</mujoco>

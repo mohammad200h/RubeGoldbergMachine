@@ -1,0 +1,37 @@
+<% 
+    require 'erb'
+    require 'matrix'
+    require_relative "Seasaw"
+   
+   
+
+    def degreeToRadian(degrees)
+      radians = degrees * Math::PI / 180 
+      return radians
+    end
+    def a_to_s(v)#converts array to string
+      Array(v).join(" ")
+    end
+
+    seasaw = Seasaw.new()
+  
+%>
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    <%=seasaw.assets_xml%>
+  </asset>
+
+  <default>
+    <%=seasaw.default_xml%>
+  </default>
+
+
+  <worldbody>
+    <%=seasaw.body_xml%>
+  </worldbody>
+
+ 
+</mujoco>

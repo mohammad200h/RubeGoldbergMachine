@@ -1,0 +1,31 @@
+
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    
+       
+                      
+  </asset>
+
+  <default>
+    
+        <!-- Ball -->
+        <default class="ball">
+          <geom   type="sphere"   />
+        </default>
+      
+  </default>
+
+
+  <worldbody>
+    
+        <body pos="0 0 0" euler="0 0 0">
+          <geom class="ball" size="0.005"/>
+        </body>
+      
+  </worldbody>
+
+ 
+</mujoco>

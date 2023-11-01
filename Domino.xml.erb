@@ -1,0 +1,37 @@
+<% 
+    require 'erb'
+    require 'matrix'
+    require_relative "Domino"
+   
+   
+
+    def degreeToRadian(degrees)
+      radians = degrees * Math::PI / 180 
+      return radians
+    end
+    def a_to_s(v)#converts array to string
+      Array(v).join(" ")
+    end
+
+    domino = Domino.new()
+  
+%>
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    <%=domino.assets_xml%>
+  </asset>
+
+  <default>
+    <%=domino.default_xml%>
+  </default>
+
+
+  <worldbody>
+    <%=domino.body_xml%>
+  </worldbody>
+
+ 
+</mujoco>

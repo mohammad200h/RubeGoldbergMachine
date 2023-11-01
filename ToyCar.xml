@@ -1,0 +1,59 @@
+
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    
+  </asset>
+
+  <default>
+    
+        <!-- ToyCar -->
+        <default class="ToyCar_wheel">
+          <geom   type="cylinder" size="0.01 0.005" euler="0 90 0"/>
+          <joint  axis="0 1 0" />
+        </default>
+      
+  </default>
+
+
+  <worldbody>
+    
+          <body pos="0 0 0" euler="0 0 0">
+            <geom   type="box" size="0.02 0.04 0.01" pos="0 0 0.02" />
+            <geom   type="box" size="0.02 0.07 0.01" />
+            
+
+          <body>
+            <joint class="ToyCar_wheel" />
+            <geom class="ToyCar_wheel"  pos="-0.025 -0.035 -0.005"/>
+          </body>
+        
+
+          <body>
+            <joint class="ToyCar_wheel" />
+            <geom class="ToyCar_wheel"  pos="0.025 -0.035 -0.005"/>
+          </body>
+        
+
+          <body>
+            <joint class="ToyCar_wheel" />
+            <geom class="ToyCar_wheel"  pos="-0.025 0.035 -0.005"/>
+          </body>
+        
+
+          <body>
+            <joint class="ToyCar_wheel" />
+            <geom class="ToyCar_wheel"  pos="0.025 0.035 -0.005"/>
+          </body>
+        
+          </body>
+        
+  </worldbody>
+
+ 
+</mujoco>
+
+
+

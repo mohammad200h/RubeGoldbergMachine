@@ -1,0 +1,32 @@
+
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    
+       
+                      
+  </asset>
+
+  <default>
+    
+        <!-- Box -->
+        <default class="Box">
+          <geom   type="box"   />
+        </default>
+      
+  </default>
+
+
+  <worldbody>
+    
+        <body pos="0 0 0.01" euler="0 0 0">
+          <joint type="free" />
+          <geom class="Box" size="0.01 0.01 0.01"/>
+        </body>
+      
+  </worldbody>
+
+ 
+</mujoco>

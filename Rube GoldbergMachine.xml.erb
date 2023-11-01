@@ -1,0 +1,103 @@
+<%
+  require 'erb'
+  require 'matrix'
+  require_relative "Table"
+  require_relative "Dominos"
+  require_relative "RevolvingDoor"
+  require_relative "ToyCar"
+  require_relative "GoalPost"
+  require_relative "Ball"
+
+  
+
+
+  table_top_surface = 0.5*2+0.05
+
+  ###### revolving doors #######
+  revolvingDoor_one = RevolvingDoor.new([-0.06,0.17,table_top_surface+0.005,0,0,0])
+  revolvingDoor_two = RevolvingDoor.new([0.1,-0.07,table_top_surface+0.005,0,0,90])
+
+  ####### table ######
+  table = Table.new([revolvingDoor_one,revolvingDoor_two],0.5,0.02,0.3,0.5,0.05)
+
+
+  ##### football ######
+  hitting_ball = Ball.new([0.3,0.2,table_top_surface,0,0,0],0.02)
+  
+  ##### dominos ####
+  domino_sin_positions = getPositionOnSin(total_length = 0.3,amplitude = 0.02 ,number_of_objects = 30)
+  dominos_sin = Dominos.new([-0.05,0.2,table_top_surface,0,0,0],1,domino_sin_positions)
+
+  domino_circle_positions =  getPoseCircle(center=[0,0],radius=0.2,number_of_objects = 80)
+  quarter_circle_position = domino_circle_positions.take((domino_circle_positions.length/4).to_i)
+  dominos_circle_one = Dominos.new([-0.06,-0.06,table_top_surface,0,0,0],1,quarter_circle_position)
+  
+  
+  domino_circle_positions =  getPoseCircle(center=[0,0],radius=0.15,number_of_objects = 80)
+  quarter_circle_position = domino_circle_positions.take((domino_circle_positions.length/4).to_i)
+  dominos_circle_two = Dominos.new([-0.08,-0.06,table_top_surface,0,0,0],1,quarter_circle_position)
+
+  #### toy car #####
+  toyCar = ToyCar.new([-0.1,0.09,table_top_surface,0,0,90])
+
+  #### goal post #####
+  goalPost = GoalPost.new([-0.4,0.0,table_top_surface,0,0,0])
+
+  ##### football ######
+  ball = Ball.new([-0.2,0.09,table_top_surface,0,0,0],0.05)
+
+
+%>
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+
+  <asset>
+    <!-- floor  -->
+    <texture  name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+
+    <%=table.assets_xml%>
+
+  </asset>
+
+  <default>
+    <%=table.default_xml%>
+    <%=dominos_sin.default_xml%>
+    <%=revolvingDoor_one.default_xml%>
+    <%=toyCar.default_xml%>
+    <%=goalPost.default_xml%>
+    <%=ball.default_xml%>
+   
+  </default>
+
+
+  <worldbody>
+
+    <!-- floor  -->
+    <geom type="plane" size="3 3 .01" material="grid"/>
+  
+    <%=table.body_xml%>
+  
+    <%=hitting_ball.body_xml%>
+  
+    <%=dominos_sin.body_xml%>
+    <%=dominos_circle_one.body_xml%>
+    <%=dominos_circle_two.body_xml%>
+  
+    <%=toyCar.body_xml%>
+    
+    <%=goalPost.body_xml%>
+  
+    <%=ball.body_xml%>
+  
+
+  </worldbody>
+
+  <keyframe>
+    <key name="spinning" qpos="0 0 0.02 1 0 0 0" qvel="0 0 0 0 1 200" />
+  </keyframe>
+
+ 
+</mujoco>

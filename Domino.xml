@@ -1,0 +1,35 @@
+
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    
+       
+                      
+  </asset>
+
+  <default>
+    
+        <!-- Domino -->
+        <default class="domino">
+          <geom   type="box"  friction="1" />
+        </default>
+      
+  </default>
+
+
+  <worldbody>
+    
+        <body pos="0 0 0.02" euler="0 0 0">
+       
+          
+      <joint type="free"   />
+    
+          <geom class="domino" size="0.001 0.01 0.02"/>
+        </body>
+      
+  </worldbody>
+
+ 
+</mujoco>

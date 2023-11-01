@@ -1,0 +1,37 @@
+<% 
+    require 'erb'
+    require 'matrix'
+    require_relative "GoalPost"
+   
+   
+
+    def degreeToRadian(degrees)
+      radians = degrees * Math::PI / 180 
+      return radians
+    end
+    def a_to_s(v)#converts array to string
+      Array(v).join(" ")
+    end
+
+    goalPost = GoalPost.new()
+  
+%>
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    <%=goalPost.assets_xml%>
+  </asset>
+
+  <default>
+    <%=goalPost.default_xml%>
+  </default>
+
+
+  <worldbody>
+    <%=goalPost.body_xml%>
+  </worldbody>
+
+ 
+</mujoco>

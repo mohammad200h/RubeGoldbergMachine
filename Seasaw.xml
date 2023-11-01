@@ -1,0 +1,39 @@
+
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    
+  </asset>
+
+  <default>
+    
+        <!-- Ball -->
+        <default class="seasaw_mount">
+          <geom  type="box" size="0.01 0.01 0.03"/>
+        </default>
+      
+  </default>
+
+
+  <worldbody>
+    
+        <body name="seasaw" pos="0 0 0" euler="0 0 0">
+          
+		<geom class="seasaw_mount" pos="0 0.05 0"/>
+		<geom class="seasaw_mount" pos="0 -0.05 0"/>
+      <body>
+        
+    <joint type="hinge"  axis="0 1 0"  pos= "0 0 0.02"    />
+  
+        <geom type="cylinder" size="0.005 0.05" pos="0 0 0.02" euler="90 0 0" rgba="1 1 1 1"/>
+        <geom type="box" size="0.1 0.02 0.005" pos="0 0 0.03" friction="1" rgba="1 1 1 1"/>
+      </body>
+    
+        </body>
+      
+  </worldbody>
+
+ 
+</mujoco>

@@ -1,0 +1,555 @@
+
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+
+  <asset>
+    <!-- floor  -->
+    <texture  name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+
+    
+        <!-- wood  -->
+        <texture  name="wood" type="2d" file="wood.png"/>
+        <material name="wood" texture="wood" specular="0" shininess="0.25"/>
+                      
+
+  </asset>
+
+  <default>
+    
+        <!-- Table::Leg -->
+        <default class="table_leg">
+          <geom   type="box" size="0.02 0.02 0.5" material="wood"  />
+        </default>
+        
+
+                      
+    
+        <!-- Domino -->
+        <default class="domino">
+          <geom   type="box" size="0.001 0.01 0.02"  />
+        </default>
+      
+    
+        <!-- RevolvingDoor -->
+        <default class="revolvingDoor">
+          <geom   type="box" size="0.001 0.04 0.02"  />
+        </default>
+      
+    
+        <!-- ToyCar -->
+        <default class="ToyCar_wheel">
+          <geom   type="cylinder" size="0.005 0.001" euler="0 90 0"/>
+          <joint  axis="0 1 0" />
+        </default>
+      
+    
+        <!-- GoalPost -->
+        <default class="goalPost">
+          <geom   type="cylinder"   />
+        </default>
+      
+    
+        <!-- Ball -->
+        <default class="ball">
+          <geom   type="sphere"   />
+        </default>
+      
+   
+  </default>
+
+
+  <worldbody>
+
+    <!-- floor  -->
+    <geom type="plane" size="3 3 .01" material="grid"/>
+  
+    
+      <body pos="0 0 0" euler="0 0 0">
+        
+		<geom class="table_leg"  pos="-0.48 -0.27999999999999997 0.5"/>
+		<geom class="table_leg"  pos="0.48 -0.27999999999999997 0.5"/>
+		<geom class="table_leg"  pos="-0.48 0.27999999999999997 0.5"/>
+		<geom class="table_leg"  pos="0.48 0.27999999999999997 0.5"/>
+        	<!-- Table Top  -->
+        	<geom type="box" pos="0 0 1.0" size="0.5 0.3 0.05" material="wood"  />
+      </body>
+                  
+            
+        <body pos="-0.06 0.17 1.075" euler="0 0 0">
+          <joint type="hinge" axis="0 0 1"/>
+          <geom class="revolvingDoor" />
+          <geom type="cylinder" size="0.005 0.03"/>
+
+        </body>
+      
+          
+            
+        <body pos="0.1 -0.07 1.075" euler="0 0 90">
+          <joint type="hinge" axis="0 0 1"/>
+          <geom class="revolvingDoor" />
+          <geom type="cylinder" size="0.005 0.03"/>
+
+        </body>
+      
+          
+  
+    
+        <body pos="0.3 0.2 1.07" euler="0 0 0">
+          <geom class="ball" size="0.02"/>
+        </body>
+      
+  
+    
+		 
+        <body pos="-0.05 0.2 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.039655172413793106 0.20429940880422048 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.02931034482758621 0.2083977820312053 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.018965517241379314 0.21210348430387532 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.008620689655172417 0.21524324110255275 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.0017241379310344793 0.21767024088892048 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.012068965517241376 0.21927099985038448 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.02241379310344828 0.2199706682770225 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.03275862068965517 0.21973653045083053 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.04310344827586207 0.21857953439633585 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.05344827586206896 0.21655377996313782 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.06379310344827585 0.21375398917706848 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.07413793103448275 0.21031107714354044 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.08448275862068964 0.20638603060271962 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.09482758620689656 0.20216238036847883 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.10517241379310345 0.19783761963152116 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.11551724137931034 0.19361396939728043 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.12586206896551722 0.18968892285645958 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.13620689655172413 0.18624601082293155 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.146551724137931 0.1834462200368622 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.1568965517241379 0.18142046560366418 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.16724137931034483 0.1802634695491695 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.1775862068965517 0.18002933172297753 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.1879310344827586 0.18072900014961554 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.19827586206896552 0.18232975911107954 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.2086206896551724 0.18475675889744728 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.2189655172413793 0.1878965156961247 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.22931034482758622 0.19160221796879473 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.23965517241379314 0.19570059119577954 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.25 0.2 1.07" euler="0 0 0">
+          <geom class="domino"/>
+        </body>
+      
+    
+		 
+        <body pos="0.14 -0.06 1.07" euler="0 0 -90.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.1393834667466256 -0.04430818085443101 1.07" euler="0 0 -85.5">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.13753766811902757 -0.02871310699195382 1.07" euler="0 0 -81.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.1344739840795353 -0.013310927228818915 1.07" euler="0 0 -76.5">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.13021130325903071 0.0018033988749894814 1.07" euler="0 0 -72.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.12477590650225737 0.016536686473017967 1.07" euler="0 0 -67.5">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.1182013048376736 0.03079809994790937 1.07" euler="0 0 -63.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.11052803287081847 0.04449971294318977 1.07" euler="0 0 -58.5">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.10180339887498951 0.05755705045849463 1.07" euler="0 0 -54.00000000000001">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.0920811931200062 0.06988960966603674 1.07" euler="0 0 -49.50000000000001">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.08142135623730953 0.0814213562373095 1.07" euler="0 0 -45.00000000000001">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.06988960966603674 0.0920811931200062 1.07" euler="0 0 -40.5">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.05755705045849463 0.10180339887498951 1.07" euler="0 0 -36.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.04449971294318979 0.11052803287081844 1.07" euler="0 0 -31.500000000000007">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.030798099947909385 0.1182013048376736 1.07" euler="0 0 -27.000000000000007">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.01653668647301798 0.12477590650225737 1.07" euler="0 0 -22.500000000000004">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.0018033988749894952 0.13021130325903071 1.07" euler="0 0 -18.000000000000004">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.013310927228818902 0.1344739840795353 1.07" euler="0 0 -13.500000000000004">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.028713106991953813 0.13753766811902757 1.07" euler="0 0 -9.000000000000004">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.044308180854431 0.1393834667466256 1.07" euler="0 0 -4.5000000000000036">
+          <geom class="domino"/>
+        </body>
+      
+    
+		 
+        <body pos="0.06999999999999999 -0.06 1.07" euler="0 0 -90.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.06953760005996919 -0.04823113564082326 1.07" euler="0 0 -85.5">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.06815325108927066 -0.036534830243965366 1.07" euler="0 0 -81.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.06585548805965148 -0.024983195421614188 1.07" euler="0 0 -76.5">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.06265847744427301 -0.013647450843757888 1.07" euler="0 0 -72.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.058581929876693015 -0.0025974851452365347 1.07" euler="0 0 -67.5">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.05365097862825517 0.008098574960932026 1.07" euler="0 0 -63.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.047896024653113836 0.018374784707392317 1.07" euler="0 0 -58.50000000000001">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.041352549156242105 0.028167787843870973 1.07" euler="0 0 -54.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.03406089484000463 0.037417207249527545 1.07" euler="0 0 -49.50000000000001">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.026066017177982126 0.046066017177982116 1.07" euler="0 0 -45.00000000000001">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.01741720724952754 0.054060894840004634 1.07" euler="0 0 -40.50000000000001">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="0.008167787843870969 0.06135254915624211 1.07" euler="0 0 -36.0">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.0016252152926076735 0.06789602465311381 1.07" euler="0 0 -31.500000000000007">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.011901425039067978 0.07365097862825518 1.07" euler="0 0 -27.000000000000007">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.02259748514523653 0.07858192987669302 1.07" euler="0 0 -22.500000000000004">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.033647450843757885 0.08265847744427302 1.07" euler="0 0 -18.000000000000004">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.044983195421614185 0.08585548805965149 1.07" euler="0 0 -13.500000000000004">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.05653483024396536 0.08815325108927066 1.07" euler="0 0 -9.000000000000004">
+          <geom class="domino"/>
+        </body>
+      
+		 
+        <body pos="-0.06823113564082325 0.08953760005996919 1.07" euler="0 0 -4.5000000000000036">
+          <geom class="domino"/>
+        </body>
+      
+  
+    
+          <body pos="-0.1 0.09 1.06" euler="0 0 90">
+            <geom   type="box" size="0.008 0.01 0.005" pos="0 0 0.01" />
+            <geom   type="box" size="0.008 0.02 0.005" />
+            
+
+          <body>
+            <joint class="ToyCar_wheel" />
+            <geom class="ToyCar_wheel"  pos="-0.009000000000000001 -0.01 -0.0025"/>
+          </body>
+        
+
+          <body>
+            <joint class="ToyCar_wheel" />
+            <geom class="ToyCar_wheel"  pos="0.009000000000000001 -0.01 -0.0025"/>
+          </body>
+        
+
+          <body>
+            <joint class="ToyCar_wheel" />
+            <geom class="ToyCar_wheel"  pos="-0.009000000000000001 0.01 -0.0025"/>
+          </body>
+        
+
+          <body>
+            <joint class="ToyCar_wheel" />
+            <geom class="ToyCar_wheel"  pos="0.009000000000000001 0.01 -0.0025"/>
+          </body>
+        
+          </body>
+        
+    
+    
+          <body pos="-0.4 0.0 1.05" euler="0 0 0">
+            
+
+            <geom class="goalPost" pos="0.04 0.02 0.05" 
+                  size="0.005 0.05" euler="0 0 0"/>
+          
+
+            <geom class="goalPost" pos="-0.04 0.02 0.05" 
+                  size="0.005 0.05" euler="0 0 0"/>
+          
+
+            <geom class="goalPost" pos="0 0.02 0" 
+                  size="0.005 0.05" euler="0 90 0"/>
+          
+
+            <geom class="goalPost" pos="0 0.02 0.1" 
+                  size="0.005 0.05" euler="0 90 0"/>
+          
+
+            <geom class="goalPost" pos="0.04 0.16999999999999998 0.05" 
+                  size="0.005 0.05" euler="0 0 0"/>
+          
+
+            <geom class="goalPost" pos="-0.04 0.16999999999999998 0.05" 
+                  size="0.005 0.05" euler="0 0 0"/>
+          
+
+            <geom class="goalPost" pos="0 0.16999999999999998 0" 
+                  size="0.005 0.05" euler="0 90 0"/>
+          
+
+            <geom class="goalPost" pos="0 0.16999999999999998 0.1" 
+                  size="0.005 0.05" euler="0 90 0"/>
+          
+
+          <geom class="goalPost" pos="0.04 0.095 0.1" 
+                size="0.005 0.075" euler="90 0 0"/>
+        
+
+          <geom class="goalPost" pos="-0.04 0.095 0" 
+                size="0.005 0.075" euler="90 0 0"/>
+        
+
+          <geom class="goalPost" pos="-0.04 0.095 0.1" 
+                size="0.005 0.075" euler="90 0 0"/>
+        
+          </body>
+        
+  
+    
+        <body pos="-0.2 0.09 1.1" euler="0 0 0">
+          <geom class="ball" size="0.05"/>
+        </body>
+      
+  
+
+  </worldbody>
+
+  <keyframe>
+    <key name="spinning" qpos="0 0 0.02 1 0 0 0" qvel="0 0 0 0 1 200" />
+  </keyframe>
+
+ 
+</mujoco>

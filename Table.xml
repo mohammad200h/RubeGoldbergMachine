@@ -1,0 +1,44 @@
+
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+  <asset>
+    
+        <!-- wood  -->
+        <texture  name="wood" type="2d" file="wood.png"/>
+        <material name="wood" texture="wood" specular="0" shininess="0.25"/>
+                      
+  </asset>
+
+  <default>
+    
+        <!-- Leg -->
+        <default class="table">
+          <geom   type="box" size="0.05 0.05 0.5" material="wood"  />
+        </default>
+        
+
+                      
+  </default>
+
+
+  <worldbody>
+    
+      <body>
+        
+			<geom class="table"  pos="-0.95 -0.45 0"/>
+			<geom class="table"  pos="0.95 -0.45 0"/>
+			<geom class="table"  pos="-0.95 0.45 0"/>
+			<geom class="table"  pos="0.95 0.45 0"/>
+        	<!-- Table Top  -->
+        	<geom type="box" pos="0 0 0.55" size="1 0.5 0.05" material="wood"  />
+      </body>
+                  
+  </worldbody>
+
+ 
+</mujoco>
+
+
+

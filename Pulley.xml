@@ -1,0 +1,102 @@
+<mujoco>
+
+<extension>
+    <plugin plugin="mujoco.elasticity.cable"/>
+  </extension>
+
+  <statistic center="0 0 .3" extent="1"/>
+  <visual>
+    <global elevation="-30"/>
+  </visual>
+
+  <compiler autolimits="true"/>
+
+  <!-- <size memory="2M"/> -->
+
+    <asset>
+        <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" 
+            rgb2=".2 .3 .4" width="100" height="100" mark="edge" markrgb=".4 .5 .6"/>
+        <material name="grid" texture="grid" texrepeat="1 1" texuniform="true"
+            reflectance=".2"/>
+    </asset>
+
+    <worldbody>
+        
+
+      
+        
+
+        <body name="Pulley" pos="0 0 .75" >
+            <joint type="hinge" axis="0 1 0"/>
+            <geom name="Pulley" type= "cylinder" size=".25 .1" euler="90 0 0" material="grid"/>
+            <!-- Cabel one  -->
+            <composite prefix="B" type="cable" curve="s" count="41 1 1" size="1" offset="0.25 0 0" initial="none">
+              <plugin plugin="mujoco.elasticity.cable">
+             
+                <config key="twist" value="1e7"/>
+                <config key="bend" value="4e6"/>
+                <config key="vmax" value="0.05"/>
+              </plugin>
+              <joint kind="main" damping=".015"/>
+              <geom type="capsule" size=".005" rgba=".8 .2 .1 1" condim="1"/>
+            </composite>
+
+            <!-- Cabel tw0  -->
+            <composite prefix="A" type="cable" curve="s" count="41 1 1" size="1" offset="-0.25 0 0" initial="none">
+              <plugin plugin="mujoco.elasticity.cable">
+                
+                <config key="twist" value="1e7"/>
+                <config key="bend" value="4e6"/>
+                <config key="vmax" value="0.05"/>
+              </plugin>
+              <joint kind="main" damping=".015"/>
+              <geom type="capsule" size=".005" rgba=".8 .2 .1 1" condim="1"/>
+            </composite>
+
+        </body>
+
+       
+        <body name="slider_a" pos="0.75 0 .75" >
+            <joint type="free"/>
+            <geom type="sphere" size=".05" />
+          
+        </body>
+
+        <body name="slider_b" pos="1.25 0 .75" >
+            <joint type="free"/>
+            <geom type="sphere" size=".05" />
+          
+        </body>
+
+        
+
+
+
+        
+       
+
+    </worldbody>
+
+     <equality>
+        <connect name="right_boundary" body1="AB_last" body2="slider_a" anchor=".025 0 0"/>
+    </equality>
+
+    <contact>
+        <exclude body1="AB_last" body2="slider_a"/>
+    </contact>
+
+
+    <equality>
+        <connect name="left_boundary" body1="BB_last" body2="slider_b" anchor=".025 0 0"/>
+    </equality>
+
+    <contact>
+        <exclude body1="BB_last" body2="slider_b"/>
+    </contact>
+
+   
+
+  
+
+    
+</mujoco>
