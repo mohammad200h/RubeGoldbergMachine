@@ -1,6 +1,6 @@
 # RubeGoldbergMachine Model
 <div style="display: flex; justify-content: space-between;">
-    <img src="https://github.com/mohammad200h/RubeGoldbergMachine/blob/main/doc/screenshot.png?raw=true)" alt="Image 1" width="30%">
+    <img src="https://github.com/mohammad200h/RubeGoldbergMachine/blob/main/doc/screenshot.png?raw=true)" alt="Image 1" width="50%">
    
 </div>
 
