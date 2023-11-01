@@ -1,0 +1,85 @@
+<%
+  require 'erb'
+  require 'matrix'
+
+
+  require_relative "Ball"
+  require_relative "Box"
+  require_relative "Dominos"
+  require_relative "Seasaw"
+  require_relative "Utility"
+
+
+  camera_position = [0,0,1]
+
+  ###### seasaw  #######
+  seasaw = Seasaw.new([-0.2,0.0,0,0,0,0],flat_bed_mass=0.1)
+
+  ##### ball ######
+  ball = Ball.new([0.25,-0.35,0,0,0,0],0.02)
+
+  ##### dominos ####
+  domino_positions = domino_circle_positions =  getPoseCircle(center=[0,0],radius=0.2,number_of_objects = 40)
+  quarter_circle_position = domino_circle_positions.take((domino_circle_positions.length/4).to_i)
+  dominos = Dominos.new([0.06,-0.3,0,0,0,0],1,0.5,quarter_circle_position)
+
+  #### box on seasaw ######
+  seasaw_surface = 0.03+2*0.005
+  box = Box.new(body_pose=[-0.28,0.0,seasaw_surface,0,0,0],size=0.01,mass=0.01)
+
+  ####### Key for KeyFrame ########
+  # changing velocity of ball 
+  ball.joints[0].qvel[1]=1
+  objs = [ball]+dominos.children+[seasaw]+[box]
+  qpos,qvel = produceKey(objs)
+  
+
+%>
+
+<mujoco>
+  <compiler meshdir="assets/meshes" texturedir="assets/textures" autolimits="true"/>
+ 
+
+  <asset>
+    <!-- light  -->
+    <texture type="skybox" builtin="gradient" rgb1=".3 .5 .7" rgb2="0 0 0" width="32" height="512"/>
+    <!-- floor  -->
+    <texture  name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+
+  </asset>
+
+  <default>
+
+    <%=dominos.default_xml%>
+    <%=seasaw.default_xml%>
+    <%=ball.default_xml%>
+    <%=box.default_xml%>
+   
+  </default>
+
+
+  <worldbody>
+    <light name="spotlight" mode="targetbodycom" target="<%=seasaw.name%>" diffuse=".8 .8 .8" specular="0.3 0.3 0.3" pos="0 -6 4" cutoff="30"/>
+    <!-- floor  -->
+    <geom  type="plane" size="3 3 .01" material="grid"/>
+    <!-- camera  -->
+    <body pos="<%=a_to_s(camera_position)%>" >
+      <camera name="traking_camera"  mode="targetbody"/>
+    </body>
+  
+    <%=ball.body_xml%>
+    <%=dominos.body_xml%>
+    <%=seasaw.body_xml%>
+    <%=box.body_xml%>
+   
+  </worldbody>
+
+
+  <keyframe>
+    <key name="one" qvel="<%=a_to_s(qvel)%>" />
+  </keyframe>
+
+
+ 
+</mujoco>
