@@ -13,7 +13,7 @@
 
     class Seasaw
       attr_accessor :default_xml,:assets_xml,:body_xml,:name,:joints 
-      def initialize(body_pose=[0,0,0,0,0,0],flat_bed_mass=0.1)
+      def initialize(body_pose=[0,0,0,0,0,0],flat_bed_mass=0.1,color)
         
         @name = "seasaw"
         @joints = []
@@ -52,15 +52,15 @@
         @mount_body_xml = %{}
         
         mounts_pos.each do |m|
-          @mount_body_xml +=%{\n\t\t<geom class="seasaw_mount" pos="#{a_to_s(m)}"/>} 
+          @mount_body_xml +=%{\n\t\t<geom class="seasaw_mount" pos="#{a_to_s(m)}" rgba="#{a_to_s(color[1])}"/>} 
         end
 
         
         @swing_body_xml =%{
           <body>
             #{joint.xml}
-            <geom type="cylinder" size="#{a_to_s(shaft_size)}" pos="#{a_to_s(shaft_pos)}" euler="90 0 0" rgba="1 1 1 1"/>
-            <geom type="box" size="#{a_to_s(flat_board_size)}" pos="#{a_to_s(flat_board_pos)}" friction="1" mass="#{flat_bed_mass}" rgba="1 1 1 1"/>
+            <geom type="cylinder" size="#{a_to_s(shaft_size)}" pos="#{a_to_s(shaft_pos)}" euler="90 0 0" rgba="#{a_to_s(color[0])}"/>
+            <geom type="box" size="#{a_to_s(flat_board_size)}" pos="#{a_to_s(flat_board_pos)}" friction="1" mass="#{flat_bed_mass}" rgba="#{a_to_s(color[0])}"/>
           </body>
         }.gsub(/^  /, '')
 

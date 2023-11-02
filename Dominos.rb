@@ -108,7 +108,7 @@
 
     class Dominos
       attr_accessor :default_xml,:assets_xml,:body_xml,:children
-      def initialize(body_pose=[0,0,0,0,0,0],scale=1,scaleFactor=0,dominos_pose)
+      def initialize(body_pose=[0,0,0,0,0,0],scale=1,scaleFactor=0,dominos_pose=[],colors=[])
        
         #dummy domino
         dummy_domino = Domino.new()
@@ -123,6 +123,7 @@
         @body_xml =%{}
         
         current_scale = scale
+        color_index = 0
         dominos_pose.each do |d|
           # puts d 
           # puts "\n"
@@ -132,9 +133,14 @@
           domino_pose[5] = -1*d[2]
 
           current_scale +=scaleFactor
-          domino = Domino.new(domino_pose,current_scale,scaleFactor)
+          color = colors[color_index]
+          domino = Domino.new(domino_pose,current_scale,scaleFactor,color)
           @body_xml +=%{\n\t\t #{domino.body_xml}} 
           @children.push(domino)
+          color_index +=1
+          if color_index > colors.length-1
+            color_index = 0
+          end
         end
 
 

@@ -12,7 +12,7 @@
 
     class Ball
       attr_accessor :default_xml,:assets_xml,:body_xml,:joints,:name
-      def initialize(body_pose=[0,0,0,0,0,0],radius=0.005)
+      def initialize(body_pose=[0,0,0,0,0,0],radius=0.005,color=[1,1,1,1])
        
         @name = "ball"
         @joints = []
@@ -38,7 +38,7 @@
         @body_xml =%{
           <body pos="#{a_to_s(body_pos)}" euler="#{a_to_s(body_orn)}">
             <joint type="free" />
-            <geom class="ball" size="#{radius}"/>
+            <geom class="ball" size="#{radius}" rgba="#{a_to_s(color)}"/>
           </body>
         }.gsub(/^  /, '')
 

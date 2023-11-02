@@ -13,19 +13,37 @@
   camera_position = [0,0,1]
 
   ###### seasaw  #######
-  seasaw = Seasaw.new([-0.2,0.0,0,0,0,0],flat_bed_mass=0.1)
+  board_color = rgb256ToDecimal([217,39,86,256])
+  mount_color = rgb256ToDecimal([128,0,0,256])
+  color = [
+    board_color,
+    mount_color
+  ]
+  seasaw = Seasaw.new([-0.2,0.0,0,0,0,0],flat_bed_mass=0.1,color)
 
   ##### ball ######
-  ball = Ball.new([0.25,-0.35,0,0,0,0],0.02)
+  color = rgb256ToDecimal([168,208,141,256])
+  ball = Ball.new([0.25,-0.35,0,0,0,0],0.02,color)
 
   ##### dominos ####
+  # https://colorpalettes.io/pastel-rainbow-color-palette/
+  rainbow_colors = [
+    rgb256ToDecimal([255,109,106,256]), #RED
+    rgb256ToDecimal([239,190,125,256]), #ORANGE
+    rgb256ToDecimal([233,236,107,256]), #YELLOW
+    rgb256ToDecimal([139,211,230,256]), #BLUE
+    rgb256ToDecimal([233,205,208,256]), #PINK
+    rgb256ToDecimal([177,162,202,256]) # PURPLE
+
+  ]
   domino_positions = domino_circle_positions =  getPoseCircle(center=[0,0],radius=0.2,number_of_objects = 40)
   quarter_circle_position = domino_circle_positions.take((domino_circle_positions.length/4).to_i)
-  dominos = Dominos.new([0.06,-0.3,0,0,0,0],1,0.5,quarter_circle_position)
+  dominos = Dominos.new([0.06,-0.3,0,0,0,0],1,0.5,quarter_circle_position,rainbow_colors)
 
   #### box on seasaw ######
+  color = rgb256ToDecimal([0,181,204,256])
   seasaw_surface = 0.03+2*0.005
-  box = Box.new(body_pose=[-0.28,0.0,seasaw_surface,0,0,0],size=0.01,mass=0.01)
+  box = Box.new(body_pose=[-0.28,0.0,seasaw_surface,0,0,0],size=0.01,mass=0.01,color)
 
   ####### Key for KeyFrame ########
   # changing velocity of ball 

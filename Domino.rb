@@ -13,7 +13,7 @@
 
     class Domino
       attr_accessor :default_xml,:assets_xml,:body_xml,:joints,:name
-      def initialize(body_pose=[0,0,0,0,0,0],scale=1,scaleFactor=0)
+      def initialize(body_pose=[0,0,0,0,0,0],scale=1,scaleFactor=0,rgba=[1,1,1,1])
 
         @name = "domino"
         @joints = []
@@ -54,7 +54,7 @@
           <body pos="#{a_to_s(body_pos)}" euler="#{a_to_s(body_orn)}">
          
             #{joint.xml}
-            <geom class="domino" size="#{a_to_s(size)}"/>
+            <geom class="domino" size="#{a_to_s(size)}" rgba="#{a_to_s(rgba)}"/>
           </body>
         }.gsub(/^  /, '')
 

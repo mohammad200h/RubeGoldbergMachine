@@ -1,0 +1,27 @@
+2023-11-02 13:20:05.720 Python[49511:2109647] WARNING: Secure coding is automatically enabled for restorable state! However, not on all supported macOS versions of this application. Opt-in to secure coding explicitly by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState:.
+abstract camera::type:: <class 'mujoco._structs.MjvCamera'>
+model::ncam 1
+model::cam(0) <_MjModelCameraViews
+  bodyid: array([1], dtype=int32)
+  fovy: array([45.])
+  id: 0
+  ipd: array([0.068])
+  mat0: array([1., 0., 0., 0., 1., 0., 0., 0., 1.])
+  mode: array([3], dtype=int32)
+  name: 'traking_camera'
+  pos: array([0., 0., 0.])
+  pos0: array([0., 0., 0.])
+  poscom0: array([ 0.,  0., -1.])
+  quat: array([1., 0., 0., 0.])
+  targetbodyid: array([-1], dtype=int32)
+  user: array([], dtype=float64)
+>
+model::cam(0)::type:: <class 'mujoco._structs._MjModelCameraViews'>
+Traceback (most recent call last):
+  File "/Users/mohammadhamid/Mujoco/Models/RubeGoldbergMachine/sim.py", line 216, in <module>
+    glfw.swap_buffers(window)
+  File "/Users/mohammadhamid/Library/Python/3.9/lib/python/site-packages/glfw/__init__.py", line 2377, in swap_buffers
+    _glfw.glfwSwapBuffers(window)
+  File "/Users/mohammadhamid/Library/Python/3.9/lib/python/site-packages/glfw/__init__.py", line 686, in errcheck
+    def errcheck(result, *args):
+KeyboardInterrupt

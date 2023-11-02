@@ -13,7 +13,7 @@
 
     class Box
       attr_accessor :default_xml,:assets_xml,:body_xml,:name,:joints
-      def initialize(body_pose=[0,0,0,0,0,0],size=0.01,mass=0.1)
+      def initialize(body_pose=[0,0,0,0,0,0],size=0.01,mass=0.1,color=[1,1,1,1])
        
         @name = "box"
         @joints =[]
@@ -43,7 +43,7 @@
           <body pos="#{a_to_s(body_pos)}" euler="#{a_to_s(body_orn)}" >
            
             <joint type="free" />
-            <geom class="Box" size="#{a_to_s(b_size)}" mass="#{mass}" />
+            <geom class="Box" size="#{a_to_s(b_size)}" mass="#{mass}" rgba="#{a_to_s(color)}"/>
           </body>
         }.gsub(/^  /, '')
 

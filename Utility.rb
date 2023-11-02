@@ -2,6 +2,17 @@
     require 'erb'
     require 'matrix'
 
+
+  def rgb256ToDecimal(rgba)
+      r = rgba[0]/256.0
+      g = rgba[1]/256.0
+      b = rgba[2]/256.0
+      #  a stand for opacity 
+      a = rgba[3]/256
+
+      return [r,g,b,a]
+  end
+
     def degreeToRadian(degrees)
       radians = degrees * Math::PI / 180 
       return radians
